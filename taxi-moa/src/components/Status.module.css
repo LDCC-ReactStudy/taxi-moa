@@ -17,6 +17,10 @@
     background-color: rgba(243, 208, 51, 0.849);
     text-align: center;
     vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .CardDiv2 {
     width: '8rem';
@@ -29,6 +33,10 @@
     background-color: transparent;
     text-align: center;
     vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .Incomplete {
     color: white;
