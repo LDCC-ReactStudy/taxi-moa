@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'BalooBhai2';
+    src: url("/public/fonts/BalooBhai2-VariableFont_wght.woff2") format('woff2'),
+    url("/public/fonts/BalooBhai2-VariableFont_wght.woff") format('woff'),
+    url("/public/fonts/BalooBhai2-VariableFont_wght.otf") format('truetype')
+}
+
+
+.CardDiv {
+    width: '8rem';
+    height: '10rem';
+    margin: 5px 5px 5px 5px;
+    padding: 0px;
+    border: 1px solid #C4C4C4;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.12);
+    background-color: rgba(243, 208, 51, 0.849);
+    text-align: center;
+    vertical-align: middle;
+}
+.CardDiv2 {
+    width: '8rem';
+    height: '10rem';
+    margin: 10px 10px 10px 10px;
+    padding: 0px;
+    border: 1px solid #C4C4C4;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.12);
+    background-color: transparent;
+    text-align: center;
+    vertical-align: middle;
+}
+.Incomplete {
+    color: white;
+
+}
+.NumberText {
+    font-size: 25px;
+    font-family: 'BalooBhai2';
+    font-weight: bold;
+}
+
+.NormalText {
+    font-size: 12px;
+    font-family: 'BalooBhai2';
+    font-weight: bold;
+}
