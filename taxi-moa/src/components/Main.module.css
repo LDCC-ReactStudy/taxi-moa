@@ -1,7 +1,28 @@
 .Background {
+    background: rgb(253, 253, 236);
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
     height: fit-content;
+    overflow: hidden;
+    
+
   }
+body {
+  width: 100%;
+  height: 100%;
+
+}
+.GuideStatusDiv {
+  background: rgb(253, 253, 236);
+  overflow: hidden;
+  width: 100%;
+  vertical-align: middle;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+  
+
+}
