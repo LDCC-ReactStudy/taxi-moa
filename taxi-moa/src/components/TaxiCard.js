@@ -18,15 +18,18 @@ function chunk(arr, size) {
   return temparray;
 }
 
+
 function TaxiCard() {
   const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [hide, setHide] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [user, setUser] = useState();
 
-  const openModal = () => {
+  const openModal = (user) => {
     setModalOpen(true);
+    setUser(user);
   };
   const closeModal = () => {
     setModalOpen(false);
@@ -86,7 +89,7 @@ function TaxiCard() {
             key={user.id}
             id={user.id}
             className={styles.TaxiCardLi}
-            onClick={openModal}
+            onClick={() => openModal(user)}
           >
             <div className={styles.CardDiv}>
               {/* <Button variant="primary"> */}
@@ -106,7 +109,7 @@ function TaxiCard() {
                       </div>
                       <div className={styles.CardText2}>
                         {" "}
-                        {user.service_fare}원<br />
+                        {user.service_fare} 원<br />
                       </div>
                       <div
                         className={styles.CardText3}
@@ -128,7 +131,7 @@ function TaxiCard() {
         ))}
         {/* </ul> */}
       </Carousel>
-      <Modal open={modalOpen} close={closeModal} header="Detail">
+      <Modal open={modalOpen} close={closeModal} header="Detail" user={user}>
         <div className={styles.boxCompoent}></div>
       </Modal>
     </>
@@ -136,3 +139,4 @@ function TaxiCard() {
 }
 
 export default TaxiCard;
+
