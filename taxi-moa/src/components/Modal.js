@@ -1,9 +1,15 @@
 import React from "react";
 import styles from "./Modal.module.css";
+import {useState} from "react";
+import Map from './Map';
 
 const Modal = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
-  const { open, close, header, id } = props;
+  const { open, close, header, user } = props;
+
+  console.log(user);
+
+  const [setReason] = useState(null);
 
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
@@ -16,10 +22,39 @@ const Modal = (props) => {
               &times;
             </button>
           </header>
-          <main className={styles.main}>{props.children}</main>
+          <main className={styles.main}>
+            <div className={styles.detailInfo}>
+              <div className={styles.detailInfo_title}>이름
+                <div className={styles.detailInfo_value}>{user.member_identifier}</div>
+              </div>
+              <div className={styles.detailInfo_title}>출발지
+                <div className={styles.detailInfo_value}>{user.departure_point}</div>
+              </div>
+              <div className={styles.detailInfo_title}>목적지
+                <div className={styles.detailInfo_value}>{user.arrival_point}</div>
+              </div>
+              <div>{user.service_fare} 원</div>
+              <div>{user.departure_time}</div>
+              <div>{user.arrival_time}</div>
+              <div>{user.departure_location} , {user.arrival_location}</div>
+
+              <div className={styles.detailInfo_title}>이용목적
+                <input className={styles.detailInfo_value} type="text" name="reason" defaultValue={user.reason}
+                onChange={(e)=>{ 
+                  setReason(e.target.value)
+                  }} />
+              </div>
+            </div>
+            <div>
+                <Map />
+            </div>
+          </main>
           <footer className={styles.footer}>
             <button className={styles.footerButton} onClick={close}>
-              close
+              Save
+            </button>
+            <button className={styles.footerButton} onClick={close}>
+              Close
             </button>
           </footer>
         </section>
