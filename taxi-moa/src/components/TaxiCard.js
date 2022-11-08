@@ -18,7 +18,6 @@ function chunk(arr, size) {
   return temparray;
 }
 
-
 function TaxiCard() {
   const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -67,7 +66,7 @@ function TaxiCard() {
     );
   if (error) return <div>에러가 발생했습니다</div>;
   if (!users) return null;
-  console.log("size = " + users.length);
+  // console.log("size = " + users.length);
   let tusers = chunk(users, 3);
   return (
     <>
@@ -131,12 +130,9 @@ function TaxiCard() {
         ))}
         {/* </ul> */}
       </Carousel>
-      <Modal open={modalOpen} close={closeModal} header="Detail" user={user}>
-        <div className={styles.boxCompoent}></div>
-      </Modal>
+      <Modal open={modalOpen} close={closeModal} header="Detail" user={user} />
     </>
   );
 }
 
 export default TaxiCard;
-

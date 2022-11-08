@@ -1,6 +1,6 @@
 const { kakao } = window;
 
-export default function KakaoMapScript() {
+export default function KakaoMapScript(user) {
   /*
     const container = document.getElementById('myMap');
     const options = {
@@ -10,28 +10,51 @@ export default function KakaoMapScript() {
     const map = new kakao.maps.Map(container, options);
     */
 
-  const mapContainer = document.getElementById('map'); // 지도를 표시할 div
-  const mapOption = {
-    center: new kakao.maps.LatLng(37.509104, 127.021965), // 지도의 중심좌표
-    level: 3, // 지도의 확대 레벨
-  };
+  var mapContainer = document.getElementById("map"), // 지도를 표시할 div
+    mapOption = {
+      center: new kakao.maps.LatLng(
+        user.user.departure_location[0],
+        user.user.departure_location[1]
+      ), // 지도의 중심좌표
+      level: 3, // 지도의 확대 레벨
+    };
 
   // 지도를 생성합니다
   const map = new kakao.maps.Map(mapContainer, mapOption);
 
+  //두번째지도
+  var mapContainer2 = document.getElementById("map2"), // 지도를 표시할 div
+    mapOption = {
+      center: new kakao.maps.LatLng(
+        user.user.arrival_location[0],
+        user.user.arrival_location[1]
+      ), // 지도의 중심좌표
+      level: 3, // 지도의 확대 레벨
+    };
+
+  // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+  var map2 = new kakao.maps.Map(mapContainer2, mapOption);
+
+  console.log(user.user);
   // 주소-좌표 변환 객체를 생성합니다
   const geocoder = new kakao.maps.services.Geocoder();
 
   // 주소로 좌표를 검색합니다
   searchDetailAddrFromCoords(
-    new kakao.maps.LatLng(37.509104, 127.021965),
+    new kakao.maps.LatLng(
+      user.user.departure_location[0],
+      user.user.departure_location[1]
+    ),
     function (result, status) {
       // 정상적으로 검색이 완료됐으면
-      console.log('카카오맵 결과');
+      console.log("카카오맵 결과");
       console.log(result);
 
       if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(37.509104, 127.021965);
+        const coords = new kakao.maps.LatLng(
+          user.user.departure_location[0],
+          user.user.departure_location[1]
+        );
 
         // 결과값으로 받은 위치를 마커로 표시합니다
         const marker = new kakao.maps.Marker({
@@ -44,9 +67,9 @@ export default function KakaoMapScript() {
           content:
             '<div style="width:150px;text-align:center;padding:6px 0;">' +
             result[0].road_address.address_name +
-            '<br>' +
+            "<br>" +
             result[0].address.region_3depth_name +
-            '</div>',
+            "</div>",
         });
         infowindow.open(map, marker);
 

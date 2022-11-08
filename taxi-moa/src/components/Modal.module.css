@@ -46,20 +46,29 @@
     padding: 16px;
     border-bottom: 1px solid #dee2e6;
     border-top: 1px solid #dee2e6;
+    border: 1px solid #C4C4C4;
+    box-shadow: 0px 1px 6px 0px rgba(150, 122, 122, 0.12);
     
   }
   .footer {
-    padding: 12px 16px;
+    padding: 10px 10px;
     text-align: right;
+    border: 1px solid #C4C4C4;
+    box-shadow: 0px 1px 6px 0px rgba(150, 122, 122, 0.12);
   }
   .footerButton {
     padding: 6px 12px;
+    margin-left: 5px;
     color: #fff;
     background-color: #6c757d;
     border-radius: 5px;
+    border: 1px solid #C4C4C4;
     font-size: 13px;
   }
   .openModal {
+    position: absolute;
+    top: 5%;
+    left: 35%;
     width: 450px;
     display: flex;
     align-items: center;
@@ -87,17 +96,16 @@
   .detailInfo {
     display:flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 5px;
   }
   .detailInfo_title {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-    font-size: 14pt;
+    font-size: 12pt;
     font-weight: bold;
-    color: #6c757d;
-    padding: 4px;
-    gap: 16px;
+    padding: 3px;
+    gap: 10px;
   }
   .detailInfo_value {
     display: flex;

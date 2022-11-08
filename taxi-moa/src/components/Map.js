@@ -1,25 +1,20 @@
-import React, { useEffect } from 'react';
-import KakaoMapScript from './KakaoMapScript';
-import { Card } from 'react-bootstrap';
+import React, { useEffect } from "react";
+import KakaoMapScript from "./KakaoMapScript";
+import { Card } from "react-bootstrap";
 
-export default function Map() {
+export default function Map(user) {
   useEffect(() => {
-    KakaoMapScript();
-  }, []);   
+    KakaoMapScript(user);
+  }, [user]);
 
   return (
     <Card>
-      <div
-        style={{
-          height: '50%',
-          display: 'flex',
-          paddingTop: '300px',
-          // marginLeft: '10px',
-          // marginRight: '10px',
-          alignItems: 'center',
-        }}
-      >
-        <div id="map" style={{ width: '100%', height: '300px' }}></div>
+      <div>
+        <div style={{ fontSize: "13px" }}>[출발지점]</div>
+        <div id="map" style={{ width: "100%", height: "200px" }}></div>
+        <div style={{ height: "10px" }}></div>
+        <div style={{ fontSize: "13px" }}>[도착지점]</div>
+        <div id="map2" style={{ width: "100%", height: "200px" }}></div>
       </div>
     </Card>
   );

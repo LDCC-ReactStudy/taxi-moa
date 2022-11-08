@@ -44,8 +44,8 @@
   padding: 0px;
   border: 1px solid #C4C4C4;
   border-radius: 10px 10px 10px 10px;
-  box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.12);
-  background-color: #f5f5f5;
+  box-shadow: 0px 1px 6px 0px rgba(150, 122, 122, 0.12);
+  background-color: #FFFFFF;
 }
 .TaxiCardTable {
   width: 100%;
