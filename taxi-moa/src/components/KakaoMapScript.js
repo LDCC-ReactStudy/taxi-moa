@@ -1,104 +1,95 @@
+import React, { useState, useEffect } from "react";
 const { kakao } = window;
 
 export default function KakaoMapScript(user) {
-  /*
-    const container = document.getElementById('myMap');
-    const options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3,
-    };
-    const map = new kakao.maps.Map(container, options);
-    */
 
+  var mid_location = null;
+  var departure_location_result = "출발지";
+  var arrival_location_result = "도착지";
+
+  
+  var tmp = (getDistance(user.user.departure_location[0], user.user.departure_location[1]
+      ,user.user.arrival_location[0], user.user.arrival_location[1])*90).toFixed();
+      console.log("레벨");
+      console.log(tmp);
   var mapContainer = document.getElementById("map"), // 지도를 표시할 div
     mapOption = {
       center: new kakao.maps.LatLng(
-        user.user.departure_location[0],
-        user.user.departure_location[1]
+        (user.user.departure_location[0] + user.user.arrival_location[0])/2,
+        (user.user.departure_location[1] + user.user.arrival_location[1])/2
       ), // 지도의 중심좌표
-      level: 3, // 지도의 확대 레벨
+      level: 10, // 지도의 확대 레벨
     };
 
   // 지도를 생성합니다
   const map = new kakao.maps.Map(mapContainer, mapOption);
 
-  //두번째지도
-  var mapContainer2 = document.getElementById("map2"), // 지도를 표시할 div
-    mapOption = {
-      center: new kakao.maps.LatLng(
-        user.user.arrival_location[0],
-        user.user.arrival_location[1]
-      ), // 지도의 중심좌표
-      level: 3, // 지도의 확대 레벨
-    };
-
-  // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-  var map2 = new kakao.maps.Map(mapContainer2, mapOption);
-
-  console.log(user.user);
-  // 주소-좌표 변환 객체를 생성합니다
   const geocoder = new kakao.maps.services.Geocoder();
 
-  // 주소로 좌표를 검색합니다
   searchDetailAddrFromCoords(
     new kakao.maps.LatLng(
       user.user.departure_location[0],
       user.user.departure_location[1]
     ),
     function (result, status) {
-      // 정상적으로 검색이 완료됐으면
-      console.log("카카오맵 결과");
-      console.log(result);
+      searchDetailAddrFromCoords(
+        new kakao.maps.LatLng(
+          user.user.arrival_location[0],
+          user.user.arrival_location[1]
+        ),
+        function (result2, status2) {
+          var positions = [
+            {
+              title: result[0].address.address_name,
+              latlng: new kakao.maps.LatLng(user.user.departure_location[0], user.user.departure_location[1]),
+              text: '출발지'
+            },
+            {
+              title: result2[0].address.address_name, 
+              latlng: new kakao.maps.LatLng(user.user.arrival_location[0], user.user.arrival_location[1]),
+              text: '도착지'
+            }
+          ];
+          user.changeLocation({
+            ['departure']: result[0].address.region_3depth_name,
+            ['arrival']: result2[0].address.region_3depth_name
+          });
 
-      if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(
-          user.user.departure_location[0],
-          user.user.departure_location[1]
-        );
+          
+          for (var i = 0; i < positions.length; i ++) {
+            var imageSrc = (i == 0) ? "img/map_taxi.png" : "img/map_destination2.png"; 
+            // 마커 이미지의 이미지 크기 입니다
+            var imageSize = new kakao.maps.Size(55, 55); 
+              
+            // 마커 이미지를 생성합니다    
+            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+              
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: positions[i].latlng, // 마커를 표시할 위치
+                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                image : markerImage // 마커 이미지 
+            });
+    
+          }
 
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        const marker = new kakao.maps.Marker({
-          map: map,
-          position: coords,
+    
         });
-
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-        const infowindow = new kakao.maps.InfoWindow({
-          content:
-            '<div style="width:150px;text-align:center;padding:6px 0;">' +
-            result[0].road_address.address_name +
-            "<br>" +
-            result[0].address.region_3depth_name +
-            "</div>",
-        });
-        infowindow.open(map, marker);
-
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
-      }
-    }
-  );
+    });
+  
   function searchDetailAddrFromCoords(coords, callback) {
     // 좌표로 법정동 상세 주소 정보를 요청합니다
     geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
   }
-  /*
-  const markers = [
-    {
-      position: new kakao.maps.LatLng(33.450001, 126.570467),
-      text: '주소 이름', // text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다
-    },
-  ];
-  const staticMapContainer = document.getElementById('myMap'), // 이미지 지도를 표시할 div
-    staticMapOption = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667), // 이미지 지도의 중심좌표
-      level: 3, // 이미지 지도의 확대 레벨
-      marker: markers, // 이미지 지도에 표시할 마커
-    };
-  // 이미지 지도를 생성합니다
-  const staticMap = new kakao.maps.StaticMap(
-    staticMapContainer,
-    staticMapOption
-  );
-  */
+
+  function getDistance( ax, ay, zx, zy ){
+    var dis_x = ax - zx;
+    var dix_y = ay - zy;
+    var dist = Math.sqrt( Math.abs( dis_x * dis_x ) + Math.abs( dix_y * dix_y ) );
+    return dist;
+  }
+
+ 
+  
 }

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Modal.module.css";
 import { useState } from "react";
 import Map from "./Map";
+import axios from "axios";
 
 const Modal = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
@@ -9,7 +10,47 @@ const Modal = (props) => {
 
   console.log(user);
 
-  const [setReason] = useState(null);
+  // 
+  const [location, setLocation] = useState({
+    departure: '',
+    arrival: ''
+  });
+
+  const { departure, arrival } = location;
+
+  const changeLocation = (e) => {
+    const { value, name } = e; // 우선 e.target 에서 name 과 value 를 추출
+    setLocation({
+      ['departure']: e.departure,
+      ['arrival']: e.arrival // name 키를 가진 값을 value 로 설정
+
+    });
+
+  }
+
+  const [reason, setReason] = useState(null);
+
+  useEffect(() => {
+    const fetchSave = async () => {
+      try {
+        const response = await axios.post(
+          'http://220.118.36.168:9100/api/lottenc/kakao/save', 
+            {...user, 
+              ['reason']: reason}, { withCredentials: true }
+        );
+
+        console.log(response.data); // 데이터는 response.data 안에 들어있습니다.
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    fetchSave();
+  }, [reason]);
+
+  const saveReason = (e) => {
+    setReason(e.target.value);
+  };
 
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
@@ -33,13 +74,13 @@ const Modal = (props) => {
               <div className={styles.detailInfo_title}>
                 출발지 :
                 <div className={styles.detailInfo_value}>
-                  {user.departure_point}
+                  ({location.departure}) {user.departure_point}
                 </div>
               </div>
               <div className={styles.detailInfo_title}>
                 목적지 :
                 <div className={styles.detailInfo_value}>
-                  {user.arrival_point}
+                  ({location.arrival}) {user.arrival_point}
                 </div>
               </div>
               <div className={styles.detailInfo_title}>
@@ -74,7 +115,7 @@ const Modal = (props) => {
               </div>
             </div>
             <div>
-              <Map user={user} />
+              <Map user={user} changeLocation={changeLocation} />
             </div>
           </main>
           <footer className={styles.footer}>
