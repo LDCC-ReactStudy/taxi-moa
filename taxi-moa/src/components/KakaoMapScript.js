@@ -10,8 +10,6 @@ export default function KakaoMapScript(user) {
   
   var tmp = (getDistance(user.user.departure_location[0], user.user.departure_location[1]
       ,user.user.arrival_location[0], user.user.arrival_location[1])*90).toFixed();
-      console.log("레벨");
-      console.log(tmp);
   var mapContainer = document.getElementById("map"), // 지도를 표시할 div
     mapOption = {
       center: new kakao.maps.LatLng(
