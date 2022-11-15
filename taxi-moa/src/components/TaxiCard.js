@@ -6,6 +6,7 @@ import { Carousel } from "@mantine/carousel";
 import styles from "./TaxiCard.module.css";
 import Loading from "./Loading";
 import Modal from "../components/Modal";
+import timestamp from "./Utils";
 
 function chunk(arr, size) {
   var i,
@@ -77,7 +78,7 @@ function TaxiCard() {
         slideSize="32%"
         slideGap="md"
         align="start"
-        slidesToScroll={2}
+        slidesToScroll={1}
         lideGap="md"
         controlsOffset="xs"
         controlSize={30}
@@ -99,7 +100,7 @@ function TaxiCard() {
                   </Card.Title>
                   <Card.Text>
                     <table className={styles.TaxiCardTable}>
-                      <div className={styles.CardText}> {user.call_time} </div>
+                      <div className={styles.CardText}> {timestamp(user.call_time)} </div>
                       <div className={styles.CardText}>
                         출발지 : {user.departure_point}
                       </div>

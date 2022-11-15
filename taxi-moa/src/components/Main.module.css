@@ -5,19 +5,26 @@
     /* justify-content: center; */
     align-items: center;
     overflow: hidden;
-    height: 100vh;
+    
 
   }
 .MainDiv {
   display: flex;
   flex-direction: column;
   height: fit-content;
+  background: rgb(253, 253, 244);
 }
 .GuideStatusDiv2 {
   padding-top: 15px;
   width: 100%;
   height: fit-content;
   background: rgb(253, 253, 244);
+}
+.MobileDiv {
+  text-align: center;
+}
+.MobileStatusDiv {
+  display: inline-block;
 }
 .GuideDiv {
   width: 50%;
@@ -42,6 +49,10 @@
 }
 .leftAlign {
   margin-left: 10%;
+  margin-right: auto;
+}
+.centerAlign {
+  margin-left: auto;
   margin-right: auto;
 }
   

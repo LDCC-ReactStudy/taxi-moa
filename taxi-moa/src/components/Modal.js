@@ -3,6 +3,7 @@ import styles from "./Modal.module.css";
 import { useState } from "react";
 import Map from "./Map";
 import axios from "axios";
+import timestamp from "./Utils";
 
 const Modal = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
@@ -63,6 +64,8 @@ const Modal = (props) => {
   }
 
 
+
+
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
     <div className={open ? styles.openModal : styles.modal}>
@@ -78,44 +81,58 @@ const Modal = (props) => {
             <main className={styles.main}>
               <div className={styles.detailInfo}>
                 <div className={styles.detailInfo_title}>
+                  <div className={styles.vCenter}>
                   이름(사번) :
+                  </div>
                   <div className={styles.detailInfo_value}>
                     {user.member_identifier}
                   </div>
                 </div>
                 <div className={styles.detailInfo_title}>
+                  <div className={styles.vCenter}>
                   출발지 :
+                  </div>
                   <div className={styles.detailInfo_value}>
                     ({location.departure}) {user.departure_point}
                   </div>
                 </div>
                 <div className={styles.detailInfo_title}>
+                  <div className={styles.vCenter}>
                   목적지 :
+                  </div>
                   <div className={styles.detailInfo_value}>
                     ({location.arrival}) {user.arrival_point}
                   </div>
                 </div>
                 <div className={styles.detailInfo_title}>
+                  <div className={styles.vCenter}>
                   금액 :
+                  </div>
                   <div className={styles.detailInfo_value}>
                     {user.service_fare} 원
                   </div>
                 </div>
                 <div className={styles.detailInfo_title}>
+                  <div className={styles.vCenter}>
                   출발시간 :
+                  </div>
                   <div className={styles.detailInfo_value}>
-                    {user.departure_time}
+                    {timestamp(user.departure_time)}
                   </div>
                 </div>
                 <div className={styles.detailInfo_title}>
+                  <div className={styles.vCenter}>
                   도착시간 :
+                  </div>
                   <div className={styles.detailInfo_value}>
-                    {user.arrival_time}
+                    {timestamp(user.arrival_time)}
                   </div>
                 </div>
                 <div className={styles.detailInfo_title}>
-                  이용 목적 :
-                  <input
+                  <div className={styles.vCenter}>
+                  이용목적 :
+                  </div>
+                  <input 
                     className={styles.detailInfo_value}
                     type="text"
                     name="reason"
