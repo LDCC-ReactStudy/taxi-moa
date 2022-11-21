@@ -39,9 +39,11 @@ const Modal = (props) => {
           console.log(reason);
           console.log(postData);
           const response = await axios.post(
-            'http://220.118.36.168:9100/api/lottenc/kakao/save', 
+            '/api/lottenc/kakao/save', 
               {...user, 
-                ['reason']: reason}, { withCredentials: true }
+                ['reason']: reason,
+                ['departure_summary']: location.departure,
+                ['arrival_summary']: location.arrival}, { withCredentials: true }
           );
 
           console.log(response.data); // 데이터는 response.data 안에 들어있습니다.

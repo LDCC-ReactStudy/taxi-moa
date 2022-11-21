@@ -44,7 +44,7 @@ function TaxiCard() {
         // loading 상태를 true 로 바꿉니다.
         setLoading(true);
         const response = await axios.get(
-          "http://220.118.36.168:9100/api/lottenc/kakao",
+          "/api/lottenc/kakao",
           { withCredentials: true }
         );
 
@@ -84,7 +84,7 @@ function TaxiCard() {
         controlSize={30}
       >
         {/* <ul className={styles.TaxiCardUl}> */}
-        {users.map((user) => (
+        {!Array.isArray(users) ? null : users.map((user) => (
           <li
             key={user.id}
             id={user.id}

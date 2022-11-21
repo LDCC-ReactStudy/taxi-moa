@@ -1,0 +1,113 @@
+@font-face {
+    font-family: 'BalooBhai2';
+    src: url("/public/fonts/BalooBhai2-VariableFont_wght.woff2") format('woff2'),
+    url("/public/fonts/BalooBhai2-VariableFont_wght.woff") format('woff'),
+    url("/public/fonts/BalooBhai2-VariableFont_wght.otf") format('truetype')
+}
+.myinput {
+    height: 40px;
+    width: 100%;
+    margin: 20px auto;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    color: black;
+    background: rgb(255, 255, 230);
+    padding-left:5px;
+    font-family: FontAwesome, "Open Sans", Verdana, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+
+.mybutton {
+    height: 40px;
+    width: 100%;
+    border-radius: 4px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border: none;
+    background: #fdfa87;
+    color: black;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 15pt;
+    font-family: 'BalooBhai2';
+    font-weight: bold;
+}
+
+.myform {
+    width: 90%;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.myinput:focus {
+    outline: none
+}
+
+.logo {
+    
+    color: black;
+    font-family: 'BalooBhai2';
+    font-weight: bold;
+    font-size: 20pt;
+    font-weight: 800;
+    text-align: center;
+    padding-top: 40px
+}
+
+.mymyform {
+    background: rgb(252, 252, 210);
+    width: 40%;
+    margin: 30px auto;
+    height: 400px;
+    -webkit-box-shadow: 0px 0px 3px 1px #dfd4e4;
+    -moz-box-shadow: 0px 0px 3px 1px #dfd4e4;
+    box-shadow: 0px 0px 3px 1px #dfd4e4;
+    border-radius: 15px 15px 15px 15px;
+}
+
+.mymyform a {
+    text-decoration: none;
+    color: black;
+    font-family: sans-serif;
+    letter-spacing: .1em;
+    
+}
+
+ ::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+     color: #cccccc;
+   
+}
+.fa-cloud-upload{
+font-size:90px;
+
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #cccccc;
+      }
+
+:-ms-input-placeholder {
+    /* IE 10+ */
+     color: #cccccc;
+     }
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: #cccccc;
+  
+}
+@media screen and (max-width:500px){
+    .myform{
+        width:80%;
+    }
+}
+@media screen and (max-width:800px){
+    .myform{
+        width:60%;
+    }
+}

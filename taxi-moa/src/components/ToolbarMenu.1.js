@@ -48,7 +48,22 @@ function ToolbarMenu() {
             About
           </Link>
         </li>
+        /*
         <li className={styles.MenuLi}>
+          {!isUserLoggedIn &&
+          <Link
+            className={
+              selected === "login"
+                ? styles.selectedCategory
+                : styles.unselectedCategory
+            }
+            id="login"
+            to="/login"
+            onClick={onClick}
+          >
+            Login
+          </Link>
+          }
           {isUserLoggedIn &&
           <Link
             className={
@@ -64,7 +79,7 @@ function ToolbarMenu() {
           </Link>
           }
         </li>
-        
+        */
       </ul>
     </div>
   );

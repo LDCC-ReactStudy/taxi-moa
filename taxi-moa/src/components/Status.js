@@ -3,6 +3,7 @@ import axios from 'axios';
 import styles from './Status.module.css';
 import Loading from './Loading';
 import Card from "react-bootstrap/Card";
+import AuthenticationService from '../service/AuthenticationService';
 
 function Status() {
   const [mcount, setMCount] = useState(null);
@@ -18,7 +19,8 @@ function Status() {
         // loading 상태를 true 로 바꿉니다.
         setLoading(true);
         const response = await axios.get(
-          'http://220.118.36.168:9100/api/lottenc/kakao/count', {withCredentials: true}
+          '/api/lottenc/kakao/count', 
+          {withCredentials: true}
         );
 
         setMCount(response.data); // 데이터는 response.data 안에 들어있습니다.
