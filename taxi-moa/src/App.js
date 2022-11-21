@@ -3,15 +3,13 @@ import { Route, Routes } from 'react-router-dom';
 import Toolbar from './components/Toolbar';
 import Main from './components/Main';
 import Hello2 from './components/Hello2';
-import InstructorApp from './logincomponents/InstructorApp';
 import LoginComponent from './logincomponents/LoginComponent';
 import LogoutComponent from './logincomponents/LogoutComponent';
 import PrivateRoute from './logincomponents/PrivateRoute';
 import PublicRoute from './logincomponents/PublicRoute';
 
 function App() {
-  
-  
+
   return (
     
     <>
@@ -25,27 +23,6 @@ function App() {
     </>
 
   );
-  
-  
-
-  
-  /*
-  return (<div className="App">
-    <div><InstructorApp/></div>
-  </div>);
-  */
-  
-  /*
-  return (
-    <>
-      <Toolbar/>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/about" element={<Hello2 />} />
-      </Routes>
-    </>
-  );
-  */
   
 }
 

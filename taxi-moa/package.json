@@ -2,7 +2,6 @@
   "homepage": "http://taximoa.lottenc.com",
   "name": "taxi-moa",
   "version": "0.1.0",
-  "proxy": "http://taximoa.lottenc.com:9100",
   "private": true,
   "dependencies": {
     "@mantine/carousel": "^5.7.1",

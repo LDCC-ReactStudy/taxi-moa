@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import { Carousel } from "@mantine/carousel";
 import styles from "./TaxiCard.module.css";
 import Loading from "./Loading";
